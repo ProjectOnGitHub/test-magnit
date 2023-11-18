@@ -1,0 +1,194 @@
+.root {
+  @include gridable();
+  grid-template-columns: 1fr;
+  justify-content: center;
+  box-sizing: border-box;
+  height: 100%;
+  padding: 64px clamp(16px, 4vw, 24px) clamp(38px, 9vw, 64px);
+}
+
+.slider {
+  @include gridable();
+  position: relative;
+  box-sizing: border-box;
+  max-width: calc($max-width + 2 * 24px);
+
+  &__container {
+    @include gridable();
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__button {
+    @include flexible(clamp(36px, 10vw, 56px));
+    @include button(#ffffff);
+    position: absolute;
+    height: clamp(36px, 10vw, 56px);
+    background-color: #fff;
+    border-radius: 50%;
+
+    &::before {
+      content: '';
+      display: inline-block;
+      width: 0;
+      height: 0;
+      border-style: solid;
+    }
+
+    &_left {
+      left: -15px;
+      box-shadow: -4px 4px 8px rgba(0, 0, 0, 0.1);
+
+      @media screen and (min-width: $tablet) {
+        left: 0;
+      }
+
+      &::before {
+        border-width: 7px 10px 7px 0;
+        border-color: transparent black transparent transparent;
+      }
+    }
+
+    &_right {
+      right: -15px;
+      box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
+
+      @media screen and (min-width: $tablet) {
+        right: 0;
+      }
+
+      &::before {
+        border-width: 7px 0 7px 10px;
+        border-color: transparent transparent transparent black;
+      }
+    }
+  }
+}
+
+.slides {
+  @include gridable();
+  @include unmarkedList;
+  max-width: 467px;
+  height: 100%;
+  overflow: hidden;
+  background: url("data:image/svg+xml;charset=UTF-8,%3csvg width='467' height='467' viewBox='0 0 467 467' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M0.266936 136.708C-4.66441 59.4033 59.4033 -4.6644 136.708 0.266932L233.5 6.44132L330.292 0.266934C407.597 -4.6644 471.664 59.4033 466.733 136.708L460.559 233.5L466.733 330.292C471.664 407.597 407.597 471.664 330.292 466.733L233.5 460.559L136.708 466.733C59.4033 471.664 -4.66441 407.597 0.266932 330.292L6.44133 233.5L0.266936 136.708Z' fill='url(%23paint0_linear_1_42)'/%3e%3cdefs%3e%3clinearGradient id='paint0_linear_1_42' x1='202.776' y1='-18.4342' x2='202.776' y2='492.347' gradientUnits='userSpaceOnUse'%3e%3cstop stop-color='%23D8EAFF'/%3e%3cstop offset='0.515625' stop-color='%23F0DDFF'/%3e%3cstop offset='1' stop-color='%23FFD6A7'/%3e%3c/linearGradient%3e%3c/defs%3e%3c/svg%3e ")
+    no-repeat;
+  background-size: contain;
+}
+
+.slide {
+  @include flexible();
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  padding: clamp(20px, 10vw, 69px);
+
+  &__image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+}
+
+.stickers {
+  @include gridable();
+  @include unmarkedList;
+  grid-template-columns: repeat(auto-fit, minmax(104px, 1fr));
+  gap: 8px;
+  padding-bottom: 32px;
+}
+
+.sticker {
+  @include flexible();
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 118px;
+  border-radius: 16px;
+
+  &_color-maska {
+    background-color: #c3fff4;
+  }
+
+  &_color-polnolun {
+    background-color: #e7ecf3;
+  }
+
+  &_color-eeedaa {
+    background-color: #c3ffc9;
+  }
+
+  &__figure {
+    @include flexible();
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    row-gap: 4px;
+  }
+  &__image {
+    width: 64px;
+    height: 64px;
+  }
+  &__title {
+    font-weight: 500;
+    font-size: $font-size-xs;
+    line-height: 1.5;
+    font-family: $font-family;
+  }
+}
+
+.info {
+  @include unmarkedList;
+  line-height: 1.5;
+  font-family: $font-family;
+  text-align: center;
+  transform: translateY(-20px);
+
+  @media screen and (min-width: $tablet) {
+    transform: translateY(-40px);
+  }
+
+  &__item {
+    @include flexible();
+    flex-direction: column;
+    row-gap: clamp(12px, 3vw, 16px);
+    padding: 0 clamp(16px, 4vw, 40px) 24px;
+    box-sizing: border-box;
+  }
+
+  &__title {
+    margin: 0;
+    font-weight: 700;
+    font-size: clamp($font-size-l, 5vw, $font-size-xxl);
+
+    @media screen and (min-width: $tablet) {
+      font-size: $font-size-xxl;
+    }
+  }
+
+  &__text {
+    margin: 0;
+    font-weight: 400;
+    font-size: clamp($font-size-s, 3vw, $font-size-xl);
+
+    @media screen and (min-width: $tablet) {
+      font-size: $font-size-xl;
+    }
+  }
+}
+
+.toggle-button {
+  @include flexible();
+  @include button(#ffffff);
+  font-weight: 600;
+  font-size: $font-size-m;
+  line-height: 1.5;
+  font-family: $font-family;
+  column-gap: 16px;
+}
+
+.icon-arrow {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+}
