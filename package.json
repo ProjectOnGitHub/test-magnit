@@ -40,6 +40,6 @@
     "postcss": "^8.4.31",
     "postcss-cli": "^10.1.0",
     "svg-transform-loader": "^2.0.13",
-    "swiper": "^11.0.4"
+    "swiper": "^8.4.6"
   }
 }

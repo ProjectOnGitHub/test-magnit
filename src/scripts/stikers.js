@@ -48,5 +48,3 @@ function toggleStickersVisibility() {
 setStickersCountByWidth();
 toggleButton.addEventListener('click', toggleStickersVisibility);
 window.addEventListener('resize', setStickersCountByWidth);
-
-console.log(maxStickersCount);

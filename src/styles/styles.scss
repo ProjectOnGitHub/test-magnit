@@ -29,8 +29,10 @@
     @include gridable();
     position: relative;
     grid-area: slides;
-    justify-content: center;
     align-items: center;
+    background: url("data:image/svg+xml;charset=UTF-8,%3csvg width='467' height='467' viewBox='0 0 467 467' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M0.266936 136.708C-4.66441 59.4033 59.4033 -4.6644 136.708 0.266932L233.5 6.44132L330.292 0.266934C407.597 -4.6644 471.664 59.4033 466.733 136.708L460.559 233.5L466.733 330.292C471.664 407.597 407.597 471.664 330.292 466.733L233.5 460.559L136.708 466.733C59.4033 471.664 -4.66441 407.597 0.266932 330.292L6.44133 233.5L0.266936 136.708Z' fill='url(%23paint0_linear_1_42)'/%3e%3cdefs%3e%3clinearGradient id='paint0_linear_1_42' x1='202.776' y1='-18.4342' x2='202.776' y2='492.347' gradientUnits='userSpaceOnUse'%3e%3cstop stop-color='%23D8EAFF'/%3e%3cstop offset='0.515625' stop-color='%23F0DDFF'/%3e%3cstop offset='1' stop-color='%23FFD6A7'/%3e%3c/linearGradient%3e%3c/defs%3e%3c/svg%3e ")
+      no-repeat;
+    background-size: contain;
 
     @media screen and (min-width: $desktop) {
       justify-self: end;
@@ -39,12 +41,17 @@
   }
 
   &__button {
-    @include flexible(clamp(36px, 10vw, 56px));
+    @include flexible(36px);
     @include button(#ffffff);
     position: absolute;
-    height: clamp(36px, 10vw, 56px);
     background-color: #fff;
     border-radius: 50%;
+    z-index: 20;
+
+    @media screen and (min-width: $tablet) {
+      width: 54px;
+      height: 54px;
+    }
 
     &::before {
       content: '';
@@ -93,19 +100,17 @@
 }
 
 .slides {
-  @include gridable();
+  @include flexible();
   @include unmarkedList;
   max-width: 467px;
   height: 100%;
-  overflow: hidden;
-  background: url("data:image/svg+xml;charset=UTF-8,%3csvg width='467' height='467' viewBox='0 0 467 467' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M0.266936 136.708C-4.66441 59.4033 59.4033 -4.6644 136.708 0.266932L233.5 6.44132L330.292 0.266934C407.597 -4.6644 471.664 59.4033 466.733 136.708L460.559 233.5L466.733 330.292C471.664 407.597 407.597 471.664 330.292 466.733L233.5 460.559L136.708 466.733C59.4033 471.664 -4.66441 407.597 0.266932 330.292L6.44133 233.5L0.266936 136.708Z' fill='url(%23paint0_linear_1_42)'/%3e%3cdefs%3e%3clinearGradient id='paint0_linear_1_42' x1='202.776' y1='-18.4342' x2='202.776' y2='492.347' gradientUnits='userSpaceOnUse'%3e%3cstop stop-color='%23D8EAFF'/%3e%3cstop offset='0.515625' stop-color='%23F0DDFF'/%3e%3cstop offset='1' stop-color='%23FFD6A7'/%3e%3c/linearGradient%3e%3c/defs%3e%3c/svg%3e ")
-    no-repeat;
-  background-size: contain;
 }
 
 .slide {
-  @include flexible();
+  position: absolute;
+  z-index: 1;
   justify-content: center;
+  flex-shrink: 0;
   align-items: center;
   box-sizing: border-box;
   padding: clamp(20px, 10vw, 69px);
@@ -133,17 +138,17 @@
 }
 
 .sticker {
-  opacity: 0;
   display: none;
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 118px;
+  min-height: 118px;
   border-radius: 16px;
+  opacity: 0;
 
   &_show {
-    opacity: 1;
     display: flex;
+    opacity: 1;
   }
 
   &_color-maska {
@@ -179,6 +184,8 @@
 
 .info {
   @include unmarkedList;
+  @include gridable();
+  grid-template-areas: 'item';
   grid-area: info;
   align-self: center;
   box-sizing: border-box;
@@ -200,10 +207,18 @@
   }
 
   &__item {
+    grid-area: item;
     @include flexible();
     flex-direction: column;
     box-sizing: border-box;
     row-gap: clamp(12px, 3vw, 16px);
+    opacity: 0;
+    animation: hideText 0.5s linear;
+
+    &_active {
+      animation: showText 0.5s linear;
+      opacity: 1;
+    }
   }
 
   &__title {
@@ -227,17 +242,41 @@
   }
 }
 
+@keyframes hideText {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+
+@keyframes showText {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .toggle-button {
   @include flexible(max-content);
-  justify-self: center;
   @include button(#ffffff);
   grid-area: button;
+  justify-self: center;
+  overflow: hidden;
   font-weight: 600;
   font-size: $font-size-m;
   line-height: 1.5;
   font-family: $font-family;
   column-gap: 16px;
-  overflow: hidden;
 
   &_active .icon-arrow {
     transform: scaleY(-1);
