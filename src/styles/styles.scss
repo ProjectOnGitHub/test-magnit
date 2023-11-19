@@ -1,7 +1,8 @@
 .root {
   @include gridable();
   grid-template-columns: 1fr;
-  justify-content: center;
+  justify-content: space-between;
+  justify-items: center;
   box-sizing: border-box;
   height: 100%;
   padding: 64px clamp(16px, 4vw, 24px) clamp(38px, 9vw, 64px);
@@ -9,14 +10,32 @@
 
 .slider {
   @include gridable();
-  position: relative;
+  grid-template-areas:
+    'slides'
+    'info'
+    'stickers'
+    'button';
   box-sizing: border-box;
-  max-width: calc($max-width + 2 * 24px);
+  max-width: $max-width;
+
+  @media screen and (min-width: $desktop) {
+    grid-template-areas:
+      'info slides'
+      'stickers stickers'
+      'button button';
+  }
 
   &__container {
     @include gridable();
+    position: relative;
+    grid-area: slides;
     justify-content: center;
     align-items: center;
+
+    @media screen and (min-width: $desktop) {
+      justify-self: end;
+      max-width: 467px;
+    }
   }
 
   &__button {
@@ -43,6 +62,10 @@
         left: 0;
       }
 
+      @media screen and (min-width: $desktop) {
+        left: -24px;
+      }
+
       &::before {
         border-width: 7px 10px 7px 0;
         border-color: transparent black transparent transparent;
@@ -55,6 +78,10 @@
 
       @media screen and (min-width: $tablet) {
         right: 0;
+      }
+
+      @media screen and (min-width: $desktop) {
+        right: -24px;
       }
 
       &::before {
@@ -93,18 +120,31 @@
 .stickers {
   @include gridable();
   @include unmarkedList;
+  grid-area: stickers;
   grid-template-columns: repeat(auto-fit, minmax(104px, 1fr));
-  gap: 8px;
   padding-bottom: 32px;
+  gap: 8px;
+
+  @media screen and (min-width: $desktop) {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+
+    padding-top: 64px;
+  }
 }
 
 .sticker {
-  @include flexible();
+  opacity: 0;
+  display: none;
   justify-content: center;
   align-items: center;
   width: 100%;
   height: 118px;
   border-radius: 16px;
+
+  &_show {
+    opacity: 1;
+    display: flex;
+  }
 
   &_color-maska {
     background-color: #c3fff4;
@@ -139,6 +179,10 @@
 
 .info {
   @include unmarkedList;
+  grid-area: info;
+  align-self: center;
+  box-sizing: border-box;
+  padding: 0 clamp(16px, 4vw, 40px) 24px;
   line-height: 1.5;
   font-family: $font-family;
   text-align: center;
@@ -148,12 +192,18 @@
     transform: translateY(-40px);
   }
 
+  @media screen and (min-width: $desktop) {
+    max-width: 574px;
+    padding: 0;
+    text-align: left;
+    transform: translateY(0);
+  }
+
   &__item {
     @include flexible();
     flex-direction: column;
-    row-gap: clamp(12px, 3vw, 16px);
-    padding: 0 clamp(16px, 4vw, 40px) 24px;
     box-sizing: border-box;
+    row-gap: clamp(12px, 3vw, 16px);
   }
 
   &__title {
@@ -180,6 +230,7 @@
 .toggle-button {
   @include flexible();
   @include button(#ffffff);
+  grid-area: button;
   font-weight: 600;
   font-size: $font-size-m;
   line-height: 1.5;
