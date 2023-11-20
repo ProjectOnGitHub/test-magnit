@@ -3,6 +3,7 @@ import 'swiper/swiper-bundle.css';
 
 const swiper = new Swiper('.slider__container', {
   slidesPerView: 1,
+  spaceBetween: 10,
   effect: 'fade',
   fadeEffect: {
     crossFade: true,

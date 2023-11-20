@@ -1,4 +1,5 @@
 import './index.css';
-import './scripts/images';
-import './scripts/stikers';
 import './scripts/slider';
+
+import './scripts/images';
+import './scripts/stickers';

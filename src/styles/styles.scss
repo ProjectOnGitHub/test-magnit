@@ -30,6 +30,8 @@
     position: relative;
     grid-area: slides;
     align-items: center;
+    height: auto;
+    max-height: 467px;
     background: url("data:image/svg+xml;charset=UTF-8,%3csvg width='467' height='467' viewBox='0 0 467 467' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M0.266936 136.708C-4.66441 59.4033 59.4033 -4.6644 136.708 0.266932L233.5 6.44132L330.292 0.266934C407.597 -4.6644 471.664 59.4033 466.733 136.708L460.559 233.5L466.733 330.292C471.664 407.597 407.597 471.664 330.292 466.733L233.5 460.559L136.708 466.733C59.4033 471.664 -4.66441 407.597 0.266932 330.292L6.44133 233.5L0.266936 136.708Z' fill='url(%23paint0_linear_1_42)'/%3e%3cdefs%3e%3clinearGradient id='paint0_linear_1_42' x1='202.776' y1='-18.4342' x2='202.776' y2='492.347' gradientUnits='userSpaceOnUse'%3e%3cstop stop-color='%23D8EAFF'/%3e%3cstop offset='0.515625' stop-color='%23F0DDFF'/%3e%3cstop offset='1' stop-color='%23FFD6A7'/%3e%3c/linearGradient%3e%3c/defs%3e%3c/svg%3e ")
       no-repeat;
     background-size: contain;
@@ -44,9 +46,10 @@
     @include flexible(36px);
     @include button(#ffffff);
     position: absolute;
+    z-index: 20;
+    height: 36px;
     background-color: #fff;
     border-radius: 50%;
-    z-index: 20;
 
     @media screen and (min-width: $tablet) {
       width: 54px;
@@ -185,8 +188,8 @@
 .info {
   @include unmarkedList;
   @include gridable();
-  grid-template-areas: 'item';
   grid-area: info;
+  grid-template-areas: 'item';
   align-self: center;
   box-sizing: border-box;
   padding: 0 clamp(16px, 4vw, 40px) 24px;
@@ -207,17 +210,17 @@
   }
 
   &__item {
-    grid-area: item;
     @include flexible();
+    grid-area: item;
     flex-direction: column;
     box-sizing: border-box;
-    row-gap: clamp(12px, 3vw, 16px);
     opacity: 0;
     animation: hideText 0.5s linear;
+    row-gap: clamp(12px, 3vw, 16px);
 
     &_active {
-      animation: showText 0.5s linear;
       opacity: 1;
+      animation: showText 0.5s linear;
     }
   }
 
@@ -244,25 +247,25 @@
 
 @keyframes hideText {
   0% {
-    opacity: 1;
     transform: translateY(0);
+    opacity: 1;
   }
 
   100% {
-    opacity: 0;
     transform: translateY(20px);
+    opacity: 0;
   }
 }
 
 @keyframes showText {
   0% {
-    opacity: 0;
     transform: translateY(20px);
+    opacity: 0;
   }
 
   100% {
-    opacity: 1;
     transform: translateY(0);
+    opacity: 1;
   }
 }
 
