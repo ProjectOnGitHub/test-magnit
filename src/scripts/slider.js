@@ -1,6 +1,8 @@
 import Swiper from 'swiper/bundle';
 import 'swiper/swiper-bundle.css';
 
+const thumbsSwiper = new Swiper('.thumbs-swiper');
+
 const swiper = new Swiper('.slider__container', {
   slidesPerView: 1,
   effect: 'fade',
@@ -10,6 +12,10 @@ const swiper = new Swiper('.slider__container', {
   navigation: {
     nextEl: '.slider__button_right',
     prevEl: '.slider__button_left',
+  },
+
+  thumbs: {
+    swiper: thumbsSwiper,
   },
 });
 
