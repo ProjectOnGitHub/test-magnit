@@ -1,7 +1,7 @@
 import Swiper from 'swiper/bundle';
 import 'swiper/swiper-bundle.css';
 
-const thumbsSwiper = new Swiper('.thumbs-swiper');
+const thumbsSwiper = new Swiper('.thumbs-swiper', { allowTouchMove: false });
 
 const swiper = new Swiper('.slider__container', {
   slidesPerView: 1,

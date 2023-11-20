@@ -150,10 +150,10 @@
   justify-items: center;
   flex-wrap: wrap;
   align-content: flex-start;
-  gap: 8px;
-  overflow: hidden;
   max-height: $stickers-height-m;
-  transition: 1s ease;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0, 1, 0, 1);
+  gap: 8px;
 
   @media screen and (min-width: $tablet) {
     max-height: $stickers-height-s;
@@ -161,28 +161,22 @@
 
   &_show {
     max-height: $stickers-height-l;
+    transition: max-height 0.4s cubic-bezier(0, 1, 0, 1);
   }
 }
 
 .sticker {
-  display: none;
-  display: flex;
+  @include flexible();
   justify-content: center;
-  flex: 1 1 104px;
+  flex: 1;
   align-items: center;
-  width: 100%;
   min-width: 104px;
   max-width: 120px;
   min-height: 118px;
   max-height: 118px;
   border-radius: 16px;
-  opacity: 0;
+  cursor: pointer;
   opacity: 1;
-
-  &_show {
-    display: flex;
-    opacity: 1;
-  }
 
   &_color-maska {
     background-color: #c3fff4;
