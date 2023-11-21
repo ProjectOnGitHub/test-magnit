@@ -23,15 +23,16 @@
       'info slides'
       'stickers stickers'
       'button button';
+    grid-template-columns: 1fr 467px;
   }
 
   &__container {
     @include gridable();
     position: relative;
     grid-area: slides;
-    justify-content: center;
+    justify-items: center;
     align-items: center;
-    height: auto;
+    height: 100%;
     background: url("data:image/svg+xml;charset=UTF-8,%3csvg width='467' height='467' viewBox='0 0 467 467' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M0.266936 136.708C-4.66441 59.4033 59.4033 -4.6644 136.708 0.266932L233.5 6.44132L330.292 0.266934C407.597 -4.6644 471.664 59.4033 466.733 136.708L460.559 233.5L466.733 330.292C471.664 407.597 407.597 471.664 330.292 466.733L233.5 460.559L136.708 466.733C59.4033 471.664 -4.66441 407.597 0.266932 330.292L6.44133 233.5L0.266936 136.708Z' fill='url(%23paint0_linear_1_42)'/%3e%3cdefs%3e%3clinearGradient id='paint0_linear_1_42' x1='202.776' y1='-18.4342' x2='202.776' y2='492.347' gradientUnits='userSpaceOnUse'%3e%3cstop stop-color='%23D8EAFF'/%3e%3cstop offset='0.515625' stop-color='%23F0DDFF'/%3e%3cstop offset='1' stop-color='%23FFD6A7'/%3e%3c/linearGradient%3e%3c/defs%3e%3c/svg%3e ")
       no-repeat;
     background-position: 50%;
@@ -104,24 +105,36 @@
 }
 
 .slides {
-  @include flexible();
+  @include gridable();
   @include unmarkedList;
-  max-width: 467px;
-  height: 100%;
+  justify-items: center;
   overflow: hidden;
+  grid-template-areas: slide;
 }
 
 .slide {
-  position: absolute;
+  @include gridable();
+  grid-area: slide;
   z-index: 1;
   justify-content: center;
-  flex-shrink: 0;
   align-items: center;
   box-sizing: border-box;
   padding: clamp(20px, 10vw, 69px);
+  opacity: 0;
+  transform: translateX(0);
+  transition: opacity 1s ease, transform 1s ease;
 
-  @media screen and (min-width: $desktop) {
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  &_active {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  &_next {
+    transform: translateX(30%);
+  }
+
+  &_prev {
+    transform: translateX(-30%);
   }
 
   &__image {
@@ -143,25 +156,28 @@
 }
 
 .stickers {
-  @include flexible();
+  @include gridable();
   @include unmarkedList;
-  grid-area: stickers;
+  grid-template-columns: repeat(auto-fill, minmax(104px, 1fr));
   justify-content: center;
   justify-items: center;
-  flex-wrap: wrap;
-  align-content: flex-start;
+  box-sizing: border-box;
   max-height: $stickers-height-m;
   overflow: hidden;
-  transition: max-height 0.4s cubic-bezier(0, 1, 0, 1);
+  transition: 0.4s cubic-bezier(0, 1, 0, 1);
   gap: 8px;
 
   @media screen and (min-width: $tablet) {
     max-height: $stickers-height-s;
   }
 
+  @media screen and (min-width: $desktop) {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  }
+
   &_show {
     max-height: $stickers-height-l;
-    transition: max-height 0.4s cubic-bezier(0, 1, 0, 1);
+    transition: max-height 0.3s cubic-bezier(1, 0, 1, 0);
   }
 }
 
@@ -170,8 +186,6 @@
   justify-content: center;
   flex: 1;
   align-items: center;
-  min-width: 104px;
-  max-width: 120px;
   min-height: 118px;
   max-height: 118px;
   border-radius: 16px;
@@ -239,12 +253,12 @@
     flex-direction: column;
     box-sizing: border-box;
     opacity: 0;
-    animation: hideText 0.5s linear;
+    animation: hideText 1s linear;
     row-gap: clamp(12px, 3vw, 16px);
 
     &_active {
       opacity: 1;
-      animation: showText 0.5s linear;
+      animation: showText 1s linear;
     }
   }
 

@@ -1,14 +1,28 @@
 import Swiper from 'swiper/bundle';
-import 'swiper/swiper-bundle.css';
 
-const thumbsSwiper = new Swiper('.thumbs-swiper', { allowTouchMove: false });
+const thumbsSwiper = new Swiper('.thumbs-swiper', {
+  slidesPerView: 'auto',
+  virtualTranslate: true,
+  allowTouchMove: false,
+  wrapperClass: 'stickers',
+  slideClass: 'sticker',
+  slideVisibleClass: 'sticker_visible',
+  slideActiveClass: 'sticker_active',
+  slideThumbActiveClass: 'sticker_thumb-active',
+  slidePrevClass: 'sticker_prev',
+  slideNextClass: 'sticker_next',
+});
 
 const swiper = new Swiper('.slider__container', {
-  slidesPerView: 1,
-  effect: 'fade',
-  fadeEffect: {
-    crossFade: true,
-  },
+  virtualTranslate: true,
+  speed: null,
+  wrapperClass: 'slides',
+  slideClass: 'slide',
+  slideVisibleClass: 'slide_visible',
+  slideActiveClass: 'slide_active',
+  slidePrevClass: 'slide_prev',
+  slideNextClass: 'slide_next',
+
   navigation: {
     nextEl: '.slider__button_right',
     prevEl: '.slider__button_left',
