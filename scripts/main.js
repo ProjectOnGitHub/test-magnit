@@ -11306,16 +11306,26 @@ var modules = [Virtual, Keyboard, Mousewheel, Navigation, Pagination, Scrollbar,
 core.use(modules);
 ;// CONCATENATED MODULE: ./src/scripts/slider.js
 
-
 var thumbsSwiper = new core('.thumbs-swiper', {
-  allowTouchMove: false
+  slidesPerView: 'auto',
+  allowTouchMove: false,
+  wrapperClass: 'stickers',
+  slideClass: 'sticker',
+  slideVisibleClass: 'sticker_visible',
+  slideActiveClass: 'sticker_active',
+  slideThumbActiveClass: 'sticker_thumb-active',
+  slidePrevClass: 'sticker_prev',
+  slideNextClass: 'sticker_next'
 });
 var swiper = new core('.slider__container', {
-  slidesPerView: 1,
-  effect: 'fade',
-  fadeEffect: {
-    crossFade: true
-  },
+  virtualTranslate: true,
+  speed: null,
+  wrapperClass: 'slides',
+  slideClass: 'slide',
+  slideVisibleClass: 'slide_visible',
+  slideActiveClass: 'slide_active',
+  slidePrevClass: 'slide_prev',
+  slideNextClass: 'slide_next',
   navigation: {
     nextEl: '.slider__button_right',
     prevEl: '.slider__button_left'
