@@ -13,9 +13,6 @@ module.exports = {
     clean: true,
   },
   mode: 'development',
-  optimization: {
-    minimize: false,
-  },
   devServer: {
     static: {
       directory: path.join(__dirname, 'public'),
