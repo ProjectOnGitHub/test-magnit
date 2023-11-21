@@ -260,10 +260,11 @@
 
   &__text {
     margin: 0;
-    font-weight: 400;
+    font-weight: 500;
     font-size: clamp($font-size-s, 3vw, $font-size-xl);
 
     @media screen and (min-width: $tablet) {
+      font-weight: normal;
       font-size: $font-size-xl;
     }
   }
