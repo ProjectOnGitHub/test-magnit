@@ -11308,6 +11308,7 @@ core.use(modules);
 
 var thumbsSwiper = new core('.thumbs-swiper', {
   slidesPerView: 'auto',
+  virtualTranslate: true,
   allowTouchMove: false,
   wrapperClass: 'stickers',
   slideClass: 'sticker',
