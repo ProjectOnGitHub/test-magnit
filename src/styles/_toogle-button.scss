@@ -1,0 +1,16 @@
+.toggle-button {
+  @include flexible(max-content);
+  @include button(#ffffff);
+  grid-area: button;
+  justify-self: center;
+  overflow: hidden;
+  font-weight: 600;
+  font-size: $font-size-m;
+  line-height: 1.5;
+  font-family: $font-family;
+  column-gap: 16px;
+
+  &_active .icon-arrow {
+    transform: scaleY(-1);
+  }
+}

@@ -1,0 +1,7 @@
+.slides {
+  @include gridable();
+  @include unmarkedList;
+  justify-items: center;
+  overflow: hidden;
+  grid-template-areas: slide;
+}

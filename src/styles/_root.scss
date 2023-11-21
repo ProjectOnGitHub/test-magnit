@@ -1,0 +1,9 @@
+.root {
+  @include gridable();
+  grid-template-columns: 1fr;
+  justify-content: space-between;
+  justify-items: center;
+  box-sizing: border-box;
+  height: 100%;
+  padding: 64px clamp(16px, 4vw, 24px) clamp(38px, 9vw, 64px);
+}

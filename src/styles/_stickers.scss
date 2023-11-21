@@ -1,0 +1,25 @@
+.stickers {
+  @include gridable();
+  @include unmarkedList;
+  grid-template-columns: repeat(auto-fill, minmax(104px, 1fr));
+  justify-content: center;
+  justify-items: center;
+  box-sizing: border-box;
+  max-height: $stickers-height-m;
+  overflow: hidden;
+  transition: 0.4s cubic-bezier(0, 1, 0, 1);
+  gap: 8px;
+
+  @media screen and (min-width: $tablet) {
+    max-height: $stickers-height-s;
+  }
+
+  @media screen and (min-width: $desktop) {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  }
+
+  &_show {
+    max-height: $stickers-height-l;
+    transition: max-height 0.3s cubic-bezier(1, 0, 1, 0);
+  }
+}

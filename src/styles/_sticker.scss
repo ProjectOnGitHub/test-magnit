@@ -1,0 +1,41 @@
+.sticker {
+  @include flexible();
+  justify-content: center;
+  flex: 1;
+  align-items: center;
+  min-height: 118px;
+  max-height: 118px;
+  border-radius: 16px;
+  cursor: pointer;
+  opacity: 1;
+
+  &_color-maska {
+    background-color: #c3fff4;
+  }
+
+  &_color-polnolun {
+    background-color: #e7ecf3;
+  }
+
+  &_color-eeedaa {
+    background-color: #c3ffc9;
+  }
+
+  &__figure {
+    @include flexible();
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    row-gap: 4px;
+  }
+  &__image {
+    width: 64px;
+    height: 64px;
+  }
+  &__title {
+    font-weight: 500;
+    font-size: $font-size-xs;
+    line-height: 1.5;
+    font-family: $font-family;
+  }
+}

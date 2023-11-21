@@ -1,6 +1,7 @@
-import Swiper from 'swiper/bundle';
+import Swiper, { Navigation, Thumbs } from 'swiper';
 
 const thumbsSwiper = new Swiper('.thumbs-swiper', {
+  modules: [Navigation],
   slidesPerView: 'auto',
   virtualTranslate: true,
   allowTouchMove: false,
@@ -14,6 +15,7 @@ const thumbsSwiper = new Swiper('.thumbs-swiper', {
 });
 
 const swiper = new Swiper('.slider__container', {
+  modules: [Navigation, Thumbs],
   virtualTranslate: true,
   speed: null,
   wrapperClass: 'slides',

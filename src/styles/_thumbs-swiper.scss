@@ -1,0 +1,9 @@
+.thumbs-swiper {
+  @include gridable();
+  grid-area: stickers;
+  padding-bottom: 32px;
+
+  @media screen and (min-width: $desktop) {
+    padding-top: 64px;
+  }
+}
